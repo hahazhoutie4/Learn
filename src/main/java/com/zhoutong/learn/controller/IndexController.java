@@ -3,10 +3,8 @@ package com.zhoutong.learn.controller;
 import com.zhoutong.learn.mapper.DepartDao;
 import com.zhoutong.learn.mapper.TbBaiduresouDao;
 import com.zhoutong.learn.mapper.TbUserinfoDao;
-import com.zhoutong.learn.model.Depart;
-import com.zhoutong.learn.model.Result;
-import com.zhoutong.learn.model.ResultImpl;
-import com.zhoutong.learn.model.TbUserinfo;
+import com.zhoutong.learn.model.*;
+import com.zhoutong.learn.service.TbBaiduresouService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +13,9 @@ import java.util.List;
 
 @RestController
 public class IndexController {
+
+    @Autowired
+    private TbBaiduresouService tbBaiduresouService;
 
     @Autowired
     private TbBaiduresouDao tbBaiduresouDao;
@@ -62,6 +63,20 @@ public class IndexController {
     }
     @RequestMapping("/baiduresou/insert")
     public Result inserData(@RequestBody String jsonString) {
+        List<TbBaiduresou> tbBaiduresous = tbBaiduresouService.parseJson(jsonString);
+        //多线程处理
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                synchronized (this){
+//
+//                }
+//            }
+//        }).start();
+                tbBaiduresous.stream().forEach(e ->
+                {
+                    tbBaiduresouDao.insertData(e);
+                });
         return ResultImpl.okResult("插入字段成功");
     }
 }

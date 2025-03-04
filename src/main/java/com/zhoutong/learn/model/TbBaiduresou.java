@@ -11,8 +11,7 @@ public class TbBaiduresou {
     public TbBaiduresou() {
     }
 
-    public TbBaiduresou(Integer id, String time, String content) {
-        this.id = id;
+    public TbBaiduresou(String time, String content) {
         this.time = time;
         this.content = content;
     }
