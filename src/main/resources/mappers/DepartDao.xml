@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhoutong.learn.mapper.DepartDao">
+    <!-- 查询单个用户 -->
+    <select id="getDepartById" resultType="com.zhoutong.learn.model.Depart">
+        SELECT * FROM depart WHERE id = #{id}
+    </select>
+
+    <!-- 查询所有用户 -->
+    <select id="list" resultType="com.zhoutong.learn.model.Depart">
+        SELECT * FROM depart
+    </select>
+</mapper>
