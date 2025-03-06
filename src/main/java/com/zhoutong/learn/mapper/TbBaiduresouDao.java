@@ -2,8 +2,13 @@ package com.zhoutong.learn.mapper;
 
 import com.zhoutong.learn.model.TbBaiduresou;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 @Mapper
 public interface TbBaiduresouDao {
-    public Integer insertData(TbBaiduresou tbBaiduresou);
+    Integer insertData(TbBaiduresou tbBaiduresou);
+
+    List<TbBaiduresou> listLimit(@Param("page") int page, @Param("number") int number);
 }

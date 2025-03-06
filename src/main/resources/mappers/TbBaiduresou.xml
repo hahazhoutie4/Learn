@@ -8,4 +8,8 @@
         insert into tb_baiduresou(time,content) values(#{time},#{content})
     </insert>
 
+    <select id="listLimit" resultType="com.zhoutong.learn.model.TbBaiduresou">
+        select * from tb_baiduresou limit #{page},#{number}
+    </select>
+
 </mapper>
