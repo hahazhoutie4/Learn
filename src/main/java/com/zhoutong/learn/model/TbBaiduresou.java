@@ -2,6 +2,9 @@ package com.zhoutong.learn.model;
 
 import org.springframework.stereotype.Repository;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Repository
 public class TbBaiduresou {
     private Integer id;
@@ -48,4 +51,7 @@ public class TbBaiduresou {
     public void setContent(String content) {
         this.content = content;
     }
+
+
+
 }

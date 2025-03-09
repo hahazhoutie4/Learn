@@ -10,5 +10,7 @@ import java.util.List;
 public interface TbBaiduresouDao {
     Integer insertData(TbBaiduresou tbBaiduresou);
 
-    List<TbBaiduresou> listLimit(@Param("page") int page, @Param("number") int number);
+    List<TbBaiduresou> list();
+
+    List<TbBaiduresou> listLimit(@Param("page") int page, @Param("pageSize") int pageSize);
 }

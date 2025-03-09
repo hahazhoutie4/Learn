@@ -14,7 +14,7 @@ public interface DepartDao {
 
 //    @Select("select * from depart where id=#{id}")
    public List<Depart> getDepartById(int id);
-//
+
 //    @Select("select * from depart where id=${id}")
 //    public Depart getDepartById(Integer id);
 }

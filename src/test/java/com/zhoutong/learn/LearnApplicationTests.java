@@ -99,13 +99,13 @@ class LearnApplicationTests {
 	@Test
 	public  void testDp(){
 		List<Depart> list = departDao.list();
-		Result r = ResultImpl.okResult(list);
+		Result r = Result.okResult(list);
 		System.out.println(r);
 	}
 	@Test
 	public void testList(){
 		List<TbUserinfo> list1 = tbUserinfoDao.list();
-		Result r = ResultImpl.okResult(list1);
+		Result r = Result.okResult(list1);
 		System.out.println(r);
 	}
 
