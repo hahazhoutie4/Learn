@@ -4,6 +4,7 @@ import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.zhoutong.learn.mapper.TbBaiduresouDao;
 import com.zhoutong.learn.model.PageBean;
 import com.zhoutong.learn.model.TbBaiduresou;
@@ -50,13 +51,17 @@ public class TbBaiduresouService {
      * @return
      */
     public PageBean getPage(int page, int pageSize) {
-        int page_ = (page -1)*pageSize;
-        Page<TbBaiduresou> pg =PageHelper.startPage(page_,pageSize);
-        List<TbBaiduresou> list =this.listData();
+//        int page_ = (page -1)*pageSize;
+        if(page<=0) page=1;
+        if(pageSize<1) pageSize=10;
+        Page<TbBaiduresou> pg =PageHelper.startPage(page,pageSize);
+        List<TbBaiduresou> list =tbBaiduresouDao.list();
+        PageInfo<TbBaiduresou> tb=new PageInfo<>(list);
         log.info("分页查询数据:{}",pg);
-        log.info("分页查询数据完毕,数据:{}",list.toString());
-        Page<TbBaiduresou> res = (Page<TbBaiduresou>) list;
-        return new PageBean(res.getTotal(),pg.getResult());
+        log.info("分页查询数据完毕,数据:{}",list);
+//        Page<TbBaiduresou> res = (Page<TbBaiduresou>) list;
+//        return new PageBean(res.getTotal(),pg.getResult());
+        return new PageBean(tb.getPages(),tb.getList());
     }
 
     /**
@@ -98,6 +103,12 @@ public class TbBaiduresouService {
         return tbBaiduresouDao.list();
     }
 
+    /**
+     * 分页查询数据
+     * @param page
+     * @param pageSize
+     * @return
+     */
     public List<TbBaiduresou> listDataLimit(int page, int pageSize){
         return tbBaiduresouDao.listLimit(page,pageSize);
     }

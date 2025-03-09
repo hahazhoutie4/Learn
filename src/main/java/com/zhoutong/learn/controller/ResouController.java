@@ -35,7 +35,7 @@ public class ResouController {
     @GetMapping("/limit/{page}/{number}")
     public Result resouListLimit(@PathVariable(name = "page")int page ,
                                  @PathVariable(name = "number")int number){
-        List<TbBaiduresou> l = tbBaiduresouService.listDataLimit(page,number);
+        List<TbBaiduresou> l = tbBaiduresouService.listDataLimit(page-1,number);
         return Result.okResult(l);
     }
 

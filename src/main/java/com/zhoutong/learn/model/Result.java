@@ -7,11 +7,8 @@ public class Result {
     private final static Integer okCode = 1;
     private final static String okmsg = "返回成功";
     private final static String errormsg = "返回失败";
-    @JsonProperty("data")
     private  Object data;
-    @JsonProperty("code")
     private  Integer code;
-    @JsonProperty("msg")
     private  String msg;
 
     public Result() {

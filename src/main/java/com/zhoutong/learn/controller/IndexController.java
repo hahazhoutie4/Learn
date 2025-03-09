@@ -20,8 +20,6 @@ public class IndexController {
     @Autowired
     private Logger log;
 
-
-
     @Autowired
     private TbBaiduresouDao tbBaiduresouDao;
 
@@ -39,6 +37,7 @@ public class IndexController {
     }
     @GetMapping("/depart/{id}")
     public Result getDepartById(@PathVariable(name="id")int id){
+        log.info("getDepartById");
         List<Depart> depart = departDao.getDepartById(id);
         Result r = Result.okResult(depart);
         System.out.println(r);
