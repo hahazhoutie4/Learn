@@ -61,7 +61,7 @@ public class TbBaiduresouService {
         log.info("分页查询数据完毕,数据:{}",list);
 //        Page<TbBaiduresou> res = (Page<TbBaiduresou>) list;
 //        return new PageBean(res.getTotal(),pg.getResult());
-        return new PageBean(tb.getPages(),tb.getList());
+        return new PageBean(tb.getTotal(),tb.getList());
     }
 
     /**
@@ -113,4 +113,18 @@ public class TbBaiduresouService {
         return tbBaiduresouDao.listLimit(page,pageSize);
     }
 
+    public PageBean getBetweenById(int beginId, int endId, int page, int pageSize) {
+        Page<TbBaiduresou> pa = PageHelper.startPage(page,pageSize);
+        List<TbBaiduresou> list = tbBaiduresouDao.getBetweenId(beginId,endId);
+        PageInfo<TbBaiduresou> info = new PageInfo<>(list);
+        return new PageBean(info.getTotal(),info.getList());
+    }
+
+    /**
+     * 批量删除by id
+     * @param ids
+     */
+    public void deleteIds(List<Integer> ids) {
+        tbBaiduresouDao.deleteIds(ids);
+    }
 }

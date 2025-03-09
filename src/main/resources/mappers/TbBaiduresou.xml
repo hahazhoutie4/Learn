@@ -16,4 +16,24 @@
         select * from tb_baiduresou
     </select>
 
+    <select id="getBetweenId" resultType="com.zhoutong.learn.model.TbBaiduresou">
+        select * from tb_baiduresou
+        <where>
+            <if test="beginId != null and endId !=null">
+                 id between #{beginId} and #{endId}
+            </if>
+        </where>
+        order by time asc
+    </select>
+
+    <delete id="deleteIds">
+        delete from tb_baiduresou
+        where id in
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+
+
 </mapper>

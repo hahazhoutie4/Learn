@@ -7,6 +7,8 @@ import com.zhoutong.learn.model.Result;
 
 import com.zhoutong.learn.model.TbBaiduresou;
 import com.zhoutong.learn.service.TbBaiduresouService;
+import io.swagger.v3.oas.annotations.Parameter;
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +55,22 @@ public class ResouController {
     public Result getPage(@PathVariable(name = "page")int page,@PathVariable(name = "pageSize") int pageSize){
         PageBean pageBean = tbBaiduresouService.getPage(page,pageSize);
         return Result.okResult(pageBean);
+    }
+
+    @GetMapping("/getid")
+    public  Result getById(@RequestParam(name = "beginId",defaultValue = "200")int beginId,
+                           @RequestParam(name="endId",defaultValue = "300") int endId,
+                           @RequestParam(name = "page",defaultValue = "1")int page,
+                           @RequestParam(name = "pageSize",defaultValue = "10")int pageSize){
+        log.info("根据id分页查询beginId:{} endId:{} page:{} pageSize:{}",beginId,endId,page,pageSize);
+        PageBean result = tbBaiduresouService.getBetweenById(beginId,endId,page,pageSize);
+        return Result.okResult(result);
+    }
+
+    @GetMapping("/deleteid/{ids}")
+    public Result deleteByIds(@PathVariable("ids")List<Integer> ids){
+        tbBaiduresouService.deleteIds(ids);
+        return Result.okResult("delete success");   //test
     }
 
 }

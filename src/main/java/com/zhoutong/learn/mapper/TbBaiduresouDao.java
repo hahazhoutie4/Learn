@@ -13,4 +13,8 @@ public interface TbBaiduresouDao {
     List<TbBaiduresou> list();
 
     List<TbBaiduresou> listLimit(@Param("page") int page, @Param("pageSize") int pageSize);
+
+    List<TbBaiduresou> getBetweenId(@Param("beginId") int beginId, @Param("endId") int endId);
+
+    void deleteIds(@Param("ids") List<Integer> ids);
 }
