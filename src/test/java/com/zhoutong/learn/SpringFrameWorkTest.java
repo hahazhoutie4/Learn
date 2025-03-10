@@ -19,20 +19,21 @@ public class SpringFrameWorkTest implements MethodInterceptor {
     }
 
     public static void main(String[] args) throws InvocationTargetException, IllegalAccessException, InstantiationException {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-        Object o = context.getBean("resou");
+//        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+//        Object o = context.getBean("resou");
  //       Arrays.stream(o.getClass().getMethods()).forEach(System.out::println);
 //        o.getClass().getMethods()[0].invoke(o);
 //        System.out.println(o.getClass().getMethods()[1].invoke(o));
 //        System.out.println(o.getClass().getMethods()[0].getName());
 //        System.out.println(o.getClass().getClassLoader());
-        Enhancer enhancer = new Enhancer();
-        enhancer.setSuperclass(o.getClass());
-        enhancer.setCallback(SpringFrameWorkTest.class.newInstance());
-        Object object = enhancer.create();
-        Arrays.stream(object.getClass().getMethods()).forEach(System.out::println);
+//        Enhancer enhancer = new Enhancer();
+//        enhancer.setSuperclass(o.getClass());
+//        enhancer.setCallback(SpringFrameWorkTest.class.newInstance());
+//        Object object = enhancer.create();
+//        Arrays.stream(object.getClass().getMethods()).forEach(System.out::println);
  //       System.out.println(o);
  //       Arrays.stream(context.getBeanDefinitionNames()).forEach(System.out::println);
+        System.out.println(SpringFrameWorkTest.class.getResource("../../../"));
 
     }
 

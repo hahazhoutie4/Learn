@@ -27,43 +27,50 @@ public class TbBaiduresouService {
     private TbBaiduresouDao tbBaiduresouDao;
 
     /**
-     *   解析json的方法
+     * 解析json的方法
+     *
      * @param json
      * @return List<TbBaiduresou>
      */
-    public List<TbBaiduresou> parseJson(String json){
+    public List<TbBaiduresou> parseJson(String json) {
         List<TbBaiduresou> list = new ArrayList<>();
         JSONObject parse = JSONObject.parse(json);
         Set<String> keyset = parse.keySet();
-        for(String key : keyset){
+        for (String key : keyset) {
             JSONArray jsonArray = parse.getJSONArray(key);
-            jsonArray.stream().forEach(e->
+            jsonArray.stream().forEach(e ->
             {
-                list.add(new TbBaiduresou(key,(String)e));
+                list.add(new TbBaiduresou(key, (String) e));
             });
         }
         return list;
     }
+
     /**
-     *  分页查询pageHelper实现
+     * 分页查询pageHelper实现
+     *
      * @param page
      * @param pageSize
      * @return
      */
     public PageBean getPage(int page, int pageSize) {
 //        int page_ = (page -1)*pageSize;
-        if(page<=0) page=1;
-        if(pageSize<1) pageSize=10;
-        Page<TbBaiduresou> pg =PageHelper.startPage(page,pageSize);
-        List<TbBaiduresou> list =tbBaiduresouDao.list();
-        PageInfo<TbBaiduresou> tb=new PageInfo<>(list);
-        log.info("分页查询数据:{}",pg);
-        log.info("分页查询数据完毕,数据:{}",list);
+        if (page <= 0) page = 1;
+        if (pageSize < 1) pageSize = 10;
+        Page<TbBaiduresou> pg = PageHelper.startPage(page, pageSize);
+        List<TbBaiduresou> list = tbBaiduresouDao.list();
+        PageInfo<TbBaiduresou> tb = new PageInfo<>(list);
+        log.info("分页查询数据:{}", pg);
+        log.info("分页查询数据完毕,数据:{}", list);
 //        Page<TbBaiduresou> res = (Page<TbBaiduresou>) list;
 //        return new PageBean(res.getTotal(),pg.getResult());
-        return new PageBean(tb.getTotal(),tb.getList());
+        return new PageBean(tb.getTotal(), tb.getList());
     }
 
+    public int insertByModel(TbBaiduresou tbBaiduresou){
+        Integer code = tbBaiduresouDao.insertData(tbBaiduresou);
+        return code;
+}
     /**
      *  插入json格式对象
      * @param jsonString

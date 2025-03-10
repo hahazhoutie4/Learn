@@ -4,10 +4,13 @@ import com.zhoutong.learn.mapper.DepartDao;
 import com.zhoutong.learn.mapper.TbUserinfoDao;
 import com.zhoutong.learn.model.*;
 import com.zhoutong.learn.service.TbBaiduresouService;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.jupiter.api.Test;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.io.InputStreamReader;
 import java.util.List;
 
 @SpringBootTest		//spring boot整合单元测试的
@@ -122,6 +125,12 @@ class LearnApplicationTests {
 	public void testJsonParse(){
 		List<TbBaiduresou> tbBaiduresous = tbBaiduresouService.parseJson(json);
 		System.out.println(tbBaiduresous+"\r\n");
+	}
+
+	@Test
+	public void testMybatis(){
+		SqlSessionTemplate template = new SqlSessionTemplate(new SqlSessionFactoryBuilder().build(new InputStreamReader(System.class.getResourceAsStream("/mybatis-config.xml"))));
+
 	}
 
 }
