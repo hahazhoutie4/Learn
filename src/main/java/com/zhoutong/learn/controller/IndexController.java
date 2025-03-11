@@ -28,14 +28,14 @@ public class IndexController {
 
     @Autowired
     private TbUserinfoDao tb_userinfoDao;
-    @GetMapping("/depart")
+    @GetMapping
     public Result getDepart(){
         List<Depart> list = departDao.list();
         Result r = Result.okResult(list);
         System.out.println(r);
         return r;
     }
-    @GetMapping("/depart/{id}")
+    @GetMapping("/{id}")
     public Result getDepartById(@PathVariable(name="id")int id){
         log.info("getDepartById");
         List<Depart> depart = departDao.getDepartById(id);

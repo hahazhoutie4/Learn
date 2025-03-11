@@ -2,6 +2,7 @@ package com.zhoutong.learn.mapper;
 
 import com.zhoutong.learn.model.Depart;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 

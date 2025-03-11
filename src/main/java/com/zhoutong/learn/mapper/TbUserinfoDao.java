@@ -13,4 +13,6 @@ public interface TbUserinfoDao {
     public List<TbUserinfo> list();
 
     public List<TbUserinfo> getUserById(int id);
+
+    void getUserByUsernameAndPassword(TbUserinfo tbUserinfo);
 }

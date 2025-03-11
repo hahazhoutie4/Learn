@@ -1,27 +1,25 @@
 package com.zhoutong.learn;
 
-import org.apache.ibatis.session.ExecutorType;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import com.zhoutong.learn.configuration.MybatisConfigure;
 import org.junit.jupiter.api.Test;
-import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStreamReader;
+import javax.servlet.http.HttpServletRequest;
 
 @SpringBootTest
 public class MybatisTest {
 
-    @Test
-    public  void testMybatis() throws FileNotFoundException {
-        SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(new InputStreamReader(new FileInputStream(new File("/mybatis.xml"))));
-        try (SqlSessionTemplate template = new SqlSessionTemplate(factory, ExecutorType.REUSE)) {
-            System.out.println(template);
-        }
+    @Autowired
+    private MybatisConfigure mybatisConfigure;
 
+    @Autowired
+    private HttpServletRequest request;
+
+    @Test
+    public  void testMybatis(){
+        System.out.println(mybatisConfigure.getDriverClassName());
+        System.out.println(request);
     }
 
 

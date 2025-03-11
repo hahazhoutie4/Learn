@@ -129,7 +129,7 @@ class LearnApplicationTests {
 
 	@Test
 	public void testMybatis(){
-		SqlSessionTemplate template = new SqlSessionTemplate(new SqlSessionFactoryBuilder().build(new InputStreamReader(System.class.getResourceAsStream("/mybatis-config.xml"))));
+	//	SqlSessionTemplate template = new SqlSessionTemplate(new SqlSessionFactoryBuilder().build(new InputStreamReader(System.class.getResourceAsStream("/mybatis-config.xml"))));
 
 	}
 

@@ -6,12 +6,14 @@ import org.springframework.cglib.proxy.MethodInterceptor;
 import org.springframework.cglib.proxy.MethodProxy;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 import java.util.Arrays;
 
 
-public class SpringFrameWorkTest implements MethodInterceptor {
+public class SpringFrameWorkTest implements  InvocationHandler {
 
 
     @Test
@@ -34,16 +36,13 @@ public class SpringFrameWorkTest implements MethodInterceptor {
  //       System.out.println(o);
  //       Arrays.stream(context.getBeanDefinitionNames()).forEach(System.out::println);
         System.out.println(SpringFrameWorkTest.class.getResource("../../../"));
-
+        Object o = Proxy.newProxyInstance(SpringFrameWorkTest.class.getClassLoader(), SpringFrameWorkTest.class.getInterfaces(),new SpringFrameWorkTest());
+        System.out.println(o);
     }
 
+
     @Override
-    public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
-        //before 方法
-        System.out.println("before");
-        Object s = methodProxy.invokeSuper(o,objects);
-        //after 方法
-        System.out.println("after");
-        return s;
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        return null;
     }
 }

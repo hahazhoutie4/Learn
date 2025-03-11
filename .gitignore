@@ -5,9 +5,7 @@ target/
 !**/src/test/**/target/
 ### springboot proj ###
 src/main/resources/*.yaml
-.yaml
-.yml
-.properties
+src/main/resources/*.properties
 ### STS ###
 .apt_generated
 .classpath

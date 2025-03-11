@@ -1,21 +1,17 @@
 package com.zhoutong.learn.controller;
 
-import com.github.pagehelper.PageHelper;
 import com.zhoutong.learn.mapper.TbBaiduresouDao;
 import com.zhoutong.learn.model.PageBean;
 import com.zhoutong.learn.model.Result;
 
 import com.zhoutong.learn.model.TbBaiduresou;
 import com.zhoutong.learn.service.TbBaiduresouService;
-import io.swagger.v3.oas.annotations.Parameter;
-import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @RequestMapping("/resou")
 @RestController
