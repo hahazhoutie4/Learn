@@ -8,7 +8,7 @@
     <name>learn</name>
     <description>Learn project</description>
     <properties>
-        <java.version>22</java.version>
+        <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spring-boot.version>2.6.13</spring-boot.version>
@@ -96,8 +96,9 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>22</source>
-                    <target>22</target>
+                    <skip>true</skip>
+                    <source>1.8</source>
+                    <target>1.8</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
@@ -107,7 +108,8 @@
                 <version>${spring-boot.version}</version>
                 <configuration>
                     <mainClass>com.zhoutong.learn.LearnApplication</mainClass>
-                    <skip>true</skip>
+<!--                    不能跳过，否则打包的jar包没有主程序入口-->
+                    <skip>false</skip>
                 </configuration>
                 <executions>
                     <execution>
@@ -120,5 +122,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
