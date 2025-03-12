@@ -12,8 +12,5 @@ public class TbUserService {
     @Autowired
     private TbUserinfoDao tbUserinfoDao;
 
-    public TbUserinfo login(TbUserinfo tbUserinfo) {
-        tbUserinfoDao.getUserByUsernameAndPassword(tbUserinfo);
-        return null;
-    }
+
 }

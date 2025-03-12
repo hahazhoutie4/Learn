@@ -2,7 +2,6 @@ package com.zhoutong.learn.interceptor;
 
 import ch.qos.logback.classic.Logger;
 import com.zhoutong.learn.configuration.DefineLogger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -12,12 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 
 @Component
 public class Interceptor implements HandlerInterceptor {
+
     @DefineLogger
     private Logger logger;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         logger.info("拦截器拦截到地址，prehandle");
-        return true;
+    //    response.getWriter().write(JSONObject.toJSONString(Result.errorResult("...")));
+        return true;    //retur false则会拦截请求
     }
 
     @Override

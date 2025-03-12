@@ -1,5 +1,7 @@
 package com.zhoutong.learn;
 
+import ch.qos.logback.classic.Logger;
+import com.zhoutong.learn.configuration.DefineLogger;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.junit.jupiter.api.Test;
@@ -14,6 +16,10 @@ import java.util.Map;
 @SpringBootTest
 @ConfigurationProperties(prefix = "jwt")
 public class JWTTest {
+
+    @DefineLogger
+    private Logger logger;
+
 
     public String getSignedkey() {
         return signedkey;

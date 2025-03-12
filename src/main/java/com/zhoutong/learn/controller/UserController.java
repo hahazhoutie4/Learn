@@ -7,7 +7,6 @@ import com.zhoutong.learn.mapper.TbUserinfoDao;
 import com.zhoutong.learn.model.Result;
 import com.zhoutong.learn.model.TbUserinfo;
 import com.zhoutong.learn.service.TbUserService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -48,15 +47,5 @@ public class UserController {
         logger.info("插入失败:{}",result);
         return Result.errorResult("插入字段失败");
     }
-
-    @PostMapping
-    public Result login(@RequestBody TbUserinfo tb_userinfo){
-
-        logger.info("登录操作:{}",tb_userinfo);
-        TbUserinfo user = tbUserService.login(tb_userinfo);
-        //插入JWT令牌生成，利用user
-        return user!=null?Result.okResult("test"):Result.errorResult("error");
-    }
-
 
 }

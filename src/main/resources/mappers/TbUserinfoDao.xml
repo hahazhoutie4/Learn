@@ -16,9 +16,4 @@
         insert into tb_userinfo(id,userinfo) values (#{id},#{userinfo})
     </insert>
 
-    <select id="getUserByUsernameAndPassword" resultType="com.zhoutong.learn.model.TbUserinfo">
-        select * from tb_userinfo where username=#{username} and password=#{password}
-    </select>
-
-
 </mapper>

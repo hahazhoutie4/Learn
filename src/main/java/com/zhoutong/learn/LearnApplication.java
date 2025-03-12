@@ -9,9 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.zhoutong.learn"})   //组件扫描
 public class LearnApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(LearnApplication.class, args);
     }
-
 }

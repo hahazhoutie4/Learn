@@ -28,10 +28,6 @@ public class LoggerConifig implements BeanPostProcessor, BeanFactoryPostProcesso
             public void doWith(Field field) throws IllegalArgumentException, IllegalAccessException {
                 ReflectionUtils.makeAccessible(field);
                 //test Logger配置
-
-              //  System.out.println("fjalfsalfldshahg;ashohh312312h3L:"+root);
-               // System.out.println("fjalfsalfldshahg;ashohh312312h3L:"+comZhoutong);
-
                 // @DefineLogger注入logger日志对象
                     if(field.getAnnotation(DefineLogger.class)!=null){
                             Logger log = (Logger) LoggerFactory.getLogger(bean.getClass());

@@ -9,7 +9,7 @@
     </select>
 
     <!-- 查询所有用户 -->
-    <select id="list" resultType="com.zhoutong.learn.model.Depart">
+    <select id="findAllDepart" resultType="com.zhoutong.learn.model.Depart">
         SELECT * FROM depart
     </select>
 </mapper>
