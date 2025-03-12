@@ -1,26 +1,25 @@
 package com.zhoutong.learn;
 
+import ch.qos.logback.classic.Logger;
+import com.zhoutong.learn.configuration.DefineLogger;
 import org.junit.jupiter.api.Test;
-import org.springframework.cglib.proxy.Enhancer;
-import org.springframework.cglib.proxy.MethodInterceptor;
-import org.springframework.cglib.proxy.MethodProxy;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
-import java.util.Arrays;
 
 
 public class SpringFrameWorkTest implements  InvocationHandler {
 
+    @DefineLogger
+    private Logger logger;
 
     @Test
     public void test(){
     }
 
-    public static void main(String[] args) throws InvocationTargetException, IllegalAccessException, InstantiationException {
+    @Test
+    public void tst()throws InvocationTargetException, IllegalAccessException, InstantiationException {
 //        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 //        Object o = context.getBean("resou");
  //       Arrays.stream(o.getClass().getMethods()).forEach(System.out::println);
@@ -35,9 +34,9 @@ public class SpringFrameWorkTest implements  InvocationHandler {
 //        Arrays.stream(object.getClass().getMethods()).forEach(System.out::println);
  //       System.out.println(o);
  //       Arrays.stream(context.getBeanDefinitionNames()).forEach(System.out::println);
-        System.out.println(SpringFrameWorkTest.class.getResource("../../../"));
+        logger.info("地址为{}",SpringFrameWorkTest.class.getResource("../../../"));
         Object o = Proxy.newProxyInstance(SpringFrameWorkTest.class.getClassLoader(), SpringFrameWorkTest.class.getInterfaces(),new SpringFrameWorkTest());
-        System.out.println(o);
+        logger.info("对象为：{}",o);
     }
 
 

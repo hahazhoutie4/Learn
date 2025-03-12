@@ -1,15 +1,16 @@
 package com.zhoutong.learn.service;
 
+import ch.qos.logback.classic.Logger;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.zhoutong.learn.configuration.DefineLogger;
 import com.zhoutong.learn.mapper.TbBaiduresouDao;
 import com.zhoutong.learn.model.PageBean;
 import com.zhoutong.learn.model.TbBaiduresou;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,14 +23,14 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Service
 public class TbBaiduresouService {
 
-    private static final Logger log = LoggerFactory.getLogger(TbBaiduresouService.class);
+    @DefineLogger
+    private Logger logger;
 
     @Autowired
     private TbBaiduresouDao tbBaiduresouDao;
 
     /**
-     * 解析json的方法
-     *
+     * 解析json的工具
      * @param json
      * @return List<TbBaiduresou>
      */
@@ -48,8 +49,7 @@ public class TbBaiduresouService {
     }
 
     /**
-     * 分页查询pageHelper实现
-     *
+     * 分页查询，pageHelper实现
      * @param page
      * @param pageSize
      * @return
@@ -61,8 +61,9 @@ public class TbBaiduresouService {
         Page<TbBaiduresou> pg = PageHelper.startPage(page, pageSize);
         List<TbBaiduresou> list = tbBaiduresouDao.list();
         PageInfo<TbBaiduresou> tb = new PageInfo<>(list);
-        log.info("分页查询数据:{}", pg);
-        log.info("分页查询数据完毕,数据:{}", list);
+        logger.info("分页查询数据完毕,数据总条数{}\r\n", tb.getTotal());
+//        log.info("分页查询数据:{}\r\n", pg);
+//        log.info("分页查询数据完毕,数据:{}\r\n", list);
 //        Page<TbBaiduresou> res = (Page<TbBaiduresou>) list;
 //        return new PageBean(res.getTotal(),pg.getResult());
         return new PageBean(tb.getTotal(), tb.getList());
@@ -75,7 +76,7 @@ public class TbBaiduresouService {
     /**
      *  插入json格式对象
      * @param jsonString
-     * @return
+     * @return int 插入成功返回1，失败返回0
      */
     public int insertData(String jsonString) {
         List<TbBaiduresou> tbBaiduresous = this.parseJson(jsonString);
@@ -84,11 +85,11 @@ public class TbBaiduresouService {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                System.out.println(Thread.currentThread().getName());
+                logger.info(Thread.currentThread().getName());
                 synchronized (tbBaiduresous){
                     tbBaiduresous.stream().forEach(e->{
                         tbBaiduresouDao.insertData(e);
-                        log.info("插入数据完毕");
+                        logger.info("插入数据完毕");
                         code.set(1);
                     });
                 }
@@ -98,7 +99,7 @@ public class TbBaiduresouService {
         try {
             thread.join();
         } catch (InterruptedException e) {
-            log.info("插入数据错误",e);
+            logger.info("插入数据错误",e);
         }
         return code.get();
     }

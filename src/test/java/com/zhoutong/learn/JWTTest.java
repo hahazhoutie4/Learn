@@ -33,7 +33,7 @@ public class JWTTest {
                 .claims(map)                //有效载荷
                 .expiration(new Date(System.currentTimeMillis()+1000*60*60))
                 .compact(); //1h过期
-        System.out.println(jwt);
+        logger.info(jwt);
     }
 
 }

@@ -1,5 +1,7 @@
 package com.zhoutong.learn;
 
+import ch.qos.logback.classic.Logger;
+import com.zhoutong.learn.configuration.DefineLogger;
 import com.zhoutong.learn.mapper.DepartDao;
 import com.zhoutong.learn.mapper.TbUserinfoDao;
 import com.zhoutong.learn.model.*;
@@ -85,6 +87,8 @@ class LearnApplicationTests {
 			"    ]"+
 			"}";
 
+	@DefineLogger
+	private Logger logger;
 
 	@Autowired
 	private TbBaiduresouService tbBaiduresouService;
@@ -97,19 +101,19 @@ class LearnApplicationTests {
 	@Test
 	void contextLoads() {
 		List<Depart> list = departDao.list();
-		list.stream().forEach(depart -> System.out.println(depart.getName()+depart.getId()));
+		list.stream().forEach(depart -> logger.info(depart.getName()+depart.getId()));
 	}
 	@Test
 	public  void testDp(){
 		List<Depart> list = departDao.list();
 		Result r = Result.okResult(list);
-		System.out.println(r);
+		logger.info("返回Result内容{}",r);
 	}
 	@Test
 	public void testList(){
 		List<TbUserinfo> list1 = tbUserinfoDao.list();
 		Result r = Result.okResult(list1);
-		System.out.println(r);
+		logger.info("返回Result内容{}",r);
 	}
 
 	@Test
@@ -118,18 +122,17 @@ class LearnApplicationTests {
 		tb_userinfo.setUserinfo("resoushijian");
 		System.out.println(tb_userinfo);
 		int zhoutong321321 = tbUserinfoDao.insertUser(tb_userinfo);
-		System.out.println(zhoutong321321);
+		logger.info("insertUser返回code:{}",zhoutong321321);
 	}
 
 	@Test
 	public void testJsonParse(){
 		List<TbBaiduresou> tbBaiduresous = tbBaiduresouService.parseJson(json);
-		System.out.println(tbBaiduresous+"\r\n");
+		logger.info("tbBaiduresous:{}",tbBaiduresous);
 	}
 
 	@Test
 	public void testMybatis(){
-	//	SqlSessionTemplate template = new SqlSessionTemplate(new SqlSessionFactoryBuilder().build(new InputStreamReader(System.class.getResourceAsStream("/mybatis-config.xml"))));
 
 	}
 

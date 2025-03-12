@@ -1,13 +1,14 @@
 package com.zhoutong.learn.controller;
 
+import com.zhoutong.learn.configuration.DefineLogger;
 import com.zhoutong.learn.mapper.TbBaiduresouDao;
 import com.zhoutong.learn.model.PageBean;
 import com.zhoutong.learn.model.Result;
 
 import com.zhoutong.learn.model.TbBaiduresou;
 import com.zhoutong.learn.service.TbBaiduresouService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import ch.qos.logback.classic.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,8 +17,8 @@ import java.util.List;
 @RequestMapping("/resou")
 @RestController
 public class ResouController {
-
-    private static final Logger log = LoggerFactory.getLogger(ResouController.class);
+    @DefineLogger
+    private Logger logger;
     @Autowired
     private TbBaiduresouService tbBaiduresouService;
 
@@ -57,7 +58,7 @@ public class ResouController {
                           @RequestParam(name = "endId", defaultValue = "300") int endId,
                           @RequestParam(name = "page", defaultValue = "1") int page,
                           @RequestParam(name = "pageSize", defaultValue = "10") int pageSize) {
-        log.info("根据id分页查询beginId:{} endId:{} page:{} pageSize:{}", beginId, endId, page, pageSize);
+        logger.info("根据id分页查询beginId:{} endId:{} page:{} pageSize:{}", beginId, endId, page, pageSize);
         PageBean result = tbBaiduresouService.getBetweenById(beginId, endId, page, pageSize);
         return Result.okResult(result);
     }

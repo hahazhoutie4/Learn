@@ -1,8 +1,8 @@
 package com.zhoutong.learn.interceptor;
 
-import com.zhoutong.learn.controller.UserController;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import ch.qos.logback.classic.Logger;
+import com.zhoutong.learn.configuration.DefineLogger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -12,12 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 
 @Component
 public class Interceptor implements HandlerInterceptor {
-
-    private final static Logger log = LoggerFactory.getLogger(UserController.class);
+    @DefineLogger
+    private Logger logger;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
-        log.info("拦截器拦截到地址，prehandle");
+        logger.info("拦截器拦截到地址，prehandle");
         return true;
     }
 

@@ -1,5 +1,7 @@
 package com.zhoutong.learn;
 
+import ch.qos.logback.classic.Logger;
+import com.zhoutong.learn.configuration.DefineLogger;
 import com.zhoutong.learn.configuration.MybatisConfigure;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 @SpringBootTest
 public class MybatisTest {
 
+    @DefineLogger
+    private Logger logger;
     @Autowired
     private MybatisConfigure mybatisConfigure;
 
@@ -18,8 +22,8 @@ public class MybatisTest {
 
     @Test
     public  void testMybatis(){
-        System.out.println(mybatisConfigure.getDriverClassName());
-        System.out.println(request);
+        logger.info(mybatisConfigure.getDriverClassName());
+        logger.info("request:{}",request);
     }
 
 
