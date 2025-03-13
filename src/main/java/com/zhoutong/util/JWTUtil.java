@@ -2,14 +2,15 @@ package com.zhoutong.util;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.Map;
 
-@Component
 @ConfigurationProperties(prefix = "jwt")
+@Data
 public class JWTUtil{
 
     private String expiration;

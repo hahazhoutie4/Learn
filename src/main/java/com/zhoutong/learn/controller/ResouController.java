@@ -14,11 +14,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RequestMapping("/resou")
 @RestController
 public class ResouController {
-    @DefineLogger
-    private Logger logger;
+//    @DefineLogger
+//    private Logger logger;
     @Autowired
     private TbBaiduresouService tbBaiduresouService;
 
@@ -58,7 +59,7 @@ public class ResouController {
                           @RequestParam(name = "endId", defaultValue = "300") int endId,
                           @RequestParam(name = "page", defaultValue = "1") int page,
                           @RequestParam(name = "pageSize", defaultValue = "10") int pageSize) {
-        logger.info("根据id分页查询beginId:{} endId:{} page:{} pageSize:{}", beginId, endId, page, pageSize);
+        log.info("根据id分页查询beginId:{} endId:{} page:{} pageSize:{}", beginId, endId, page, pageSize);
         PageBean result = tbBaiduresouService.getBetweenById(beginId, endId, page, pageSize);
         return Result.okResult(result);
     }

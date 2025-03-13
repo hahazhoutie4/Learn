@@ -100,12 +100,12 @@ class LearnApplicationTests {
 	private TbUserinfoDao tbUserinfoDao;
 	@Test
 	void contextLoads() {
-		List<Depart> list = departDao.list();
+		List<Depart> list = departDao.findAllDepart();
 		list.stream().forEach(depart -> logger.info(depart.getName()+depart.getId()));
 	}
 	@Test
 	public  void testDp(){
-		List<Depart> list = departDao.list();
+		List<Depart> list = departDao.findAllDepart();
 		Result r = Result.okResult(list);
 		logger.info("返回Result内容{}",r);
 	}

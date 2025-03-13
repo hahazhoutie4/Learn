@@ -10,12 +10,11 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import javax.servlet.http.HttpServletRequest;
 
 @Component
 @Aspect
-public class    AspectTemplate {
+public class AspectTemplate {
 
     @Autowired
     private HttpServletRequest request;
@@ -23,12 +22,14 @@ public class    AspectTemplate {
     @DefineLogger
     private Logger logger ;
     /**
+     * 基于定义方法名的切点
      * 定义切点，后续可以根据这个方法匹配切点
      */
     @Pointcut("execution(* com.zhoutong.learn.service.*.*(..))")
     public void dataAccess() {
     }
     /**
+     * 基于注解的切点
      * 注解@AOP的切点
      */
     @Pointcut("@annotation(com.zhoutong.learn.aop.AOP)")
