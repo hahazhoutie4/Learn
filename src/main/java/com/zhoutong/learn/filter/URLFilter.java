@@ -1,7 +1,5 @@
 package com.zhoutong.learn.filter;
 
-
-
 import ch.qos.logback.classic.Logger;
 import com.zhoutong.learn.configuration.DefineLogger;
 

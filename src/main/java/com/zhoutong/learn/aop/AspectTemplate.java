@@ -33,7 +33,8 @@ public class AspectTemplate {
      * 注解@AOP的切点
      */
     @Pointcut("@annotation(com.zhoutong.learn.aop.AOP)")
-    public void aop(){}
+    public void aop(){
+    }
 
     /**
      * 面向切面execution() 为指定的方法 *匹配返回值 *匹配类 *(..)匹配方法名

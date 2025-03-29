@@ -1,6 +1,5 @@
 package com.zhoutong.learn.exception;
 
-
 import com.zhoutong.learn.model.Result;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

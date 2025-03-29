@@ -11,6 +11,7 @@ import java.util.Map;
 
 @ConfigurationProperties(prefix = "jwt")
 @Data
+@Component
 public class JWTUtil{
 
     private String expiration;

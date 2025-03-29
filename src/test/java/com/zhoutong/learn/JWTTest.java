@@ -13,8 +13,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-@SpringBootTest
 @ConfigurationProperties(prefix = "jwt")
+@SpringBootTest
 public class JWTTest {
 
     @DefineLogger

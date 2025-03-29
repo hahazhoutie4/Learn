@@ -20,3 +20,7 @@ logging:
   level:
     root: INFO
     com-zhoutong: DEBUG
+util:
+  name: zhoutong
+  age: 18
+  address: hubeiprovince
