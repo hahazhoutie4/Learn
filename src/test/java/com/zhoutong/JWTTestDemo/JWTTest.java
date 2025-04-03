@@ -1,4 +1,4 @@
-package com.zhoutong.learn;
+package com.zhoutong.JWTTestDemo;
 
 import ch.qos.logback.classic.Logger;
 import com.zhoutong.learn.configuration.DefineLogger;
